@@ -50,7 +50,17 @@ export const metadata: Metadata = {
     description:
       'Reliable freight brokerage built on experience, communication, and trust. 23+ years in transportation.',
   },
-    generator: 'v0.app'
+  icons: {
+    icon: [
+      { url: '/icon.svg', type: 'image/svg+xml' },
+      { url: '/icon.svg', sizes: 'any' },
+    ],
+    shortcut: '/icon.svg',
+    apple: [
+      { url: '/icon.svg', sizes: '180x180', type: 'image/svg+xml' },
+    ],
+  },
+  generator: 'v0.app'
 }
 
 export default function RootLayout({
