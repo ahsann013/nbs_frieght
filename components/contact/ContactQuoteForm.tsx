@@ -213,8 +213,8 @@ export function ContactQuoteForm({ variant = 'contact' }: ContactQuoteFormProps)
             asChild
             className="bg-primary hover:bg-red-hover text-primary-foreground font-bold rounded-sm gap-2"
           >
-            <a href="tel:7147774275">
-              <Phone size={14} /> Need Immediate Assistance? (714) 777-4275
+            <a href="tel:6147724729">
+              <Phone size={14} /> Need Immediate Assistance? (614) 772-4729
             </a>
           </Button>
         </div>
@@ -241,10 +241,10 @@ export function ContactQuoteForm({ variant = 'contact' }: ContactQuoteFormProps)
               <Mail size={13} /> Send Pre-Filled Email
             </a>
             <a
-              href="tel:7147774275"
+              href="tel:6147724729"
               className="inline-flex items-center gap-1.5 text-xs font-bold text-foreground hover:text-primary"
             >
-              <Phone size={13} /> Call Nic at (714) 777-4275
+              <Phone size={13} /> Call Nic at (614) 772-4729
             </a>
           </div>
         </div>

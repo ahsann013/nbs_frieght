@@ -63,7 +63,7 @@ export default function ContactPage() {
                 </h3>
                 <div className="flex flex-col gap-5">
                   <a
-                    href="tel:7147774275"
+                    href="tel:6147724729"
                     className="flex items-start gap-4 group"
                   >
                     <div className="w-10 h-10 rounded-sm bg-surface-2 border border-border flex items-center justify-center flex-shrink-0 group-hover:border-primary transition-colors">
@@ -74,7 +74,7 @@ export default function ContactPage() {
                         Phone
                       </div>
                       <div className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">
-                        (714) 777-4275
+                        (614) 772-4729
                       </div>
                     </div>
                   </a>

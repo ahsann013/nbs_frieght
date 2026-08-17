@@ -92,10 +92,10 @@ export function Navigation() {
             {/* Desktop CTA */}
             <div className="hidden lg:flex items-center gap-3">
               <a
-                href="tel:7147774275"
+                href="tel:6147724729"
                 className="text-xs text-muted-foreground hover:text-foreground transition-colors hidden xl:block"
               >
-                (714) 777-4275
+                (614) 772-4729
               </a>
               <Button
                 asChild
@@ -160,7 +160,7 @@ export function Navigation() {
       >
         <div className="container mx-auto px-4 py-3 flex gap-3">
           <a
-            href="tel:7147774275"
+            href="tel:6147724729"
             className="flex-1 flex items-center justify-center gap-2 border border-border rounded-sm py-3 text-sm font-medium text-foreground hover:border-primary transition-colors"
           >
             Call Nic

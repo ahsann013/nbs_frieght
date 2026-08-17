@@ -50,7 +50,7 @@ export function FinalCTASection() {
           {/* Contact info */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-8">
             <a
-              href="tel:7147774275"
+              href="tel:6147724729"
               className="flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors group"
             >
               <div className="w-10 h-10 rounded-sm bg-surface border border-border flex items-center justify-center group-hover:border-primary transition-colors">
@@ -58,7 +58,7 @@ export function FinalCTASection() {
               </div>
               <div className="text-left">
                 <div className="text-xs text-steel tracking-wide">Call directly</div>
-                <div className="text-sm font-medium">(714) 777-4275</div>
+                <div className="text-sm font-medium">(614) 772-4729</div>
               </div>
             </a>
 
