@@ -4,52 +4,15 @@ import Image from 'next/image'
 import { Navigation } from '@/components/layout/Navigation'
 import { Footer } from '@/components/layout/Footer'
 import { Button } from '@/components/ui/button'
-import { Clock, ArrowRight, CheckCircle } from 'lucide-react'
+import { Clock, ArrowRight, CheckCircle, CreditCard, ShieldCheck } from 'lucide-react'
+import { ConsultationBookingForm } from '@/components/consulting/ConsultationBookingForm'
+import { CONSULTATION_PLANS } from '@/lib/consulting'
 
 export const metadata: Metadata = {
-  title: 'Freight Consulting | NBS Freight LLC',
+  title: 'Freight Consulting & Strategy Sessions | NBS Freight LLC',
   description:
-    'One-on-one freight consulting sessions with Nic Spears. 23+ years of transportation experience available as a focused strategy call for brokers, owner-operators, and logistics professionals.',
+    'One-on-one freight consulting sessions with Nic Spears. 23+ years of transportation experience available as a focused 30-min ($125) or 60-min ($250) strategy call for brokers, owner-operators, and logistics professionals.',
 }
-
-const sessions = [
-  {
-    duration: '30',
-    unit: 'min',
-    title: '30-Minute Direction Call',
-    tagline: 'One focused question. One clear path forward.',
-    price: '$25',
-    description:
-      'Best for one specific question, challenge, or decision you are working through right now. Come with a clear topic. Leave with a clear direction.',
-    bestFor: [
-      'One specific brokerage or trucking question',
-      'A decision you are wrestling with',
-      'Quick reality check on a deal or lane',
-      'First step before committing to a longer session',
-    ],
-    cta: 'Book 30-Minute Call',
-    featured: false,
-  },
-  {
-    duration: '60',
-    unit: 'min',
-    title: '60-Minute Freight Strategy Session',
-    tagline: 'Deeper review. Real strategy. Actionable next steps.',
-    price: '$50',
-    description:
-      'Best for a comprehensive review of your brokerage, trucking operation, client acquisition approach, or next career move. We go deeper, cover more ground, and leave with a real plan.',
-    bestFor: [
-      'Building or improving your freight brokerage',
-      'Trucking-to-brokerage career transition',
-      'Owner-operator business strategy',
-      'Client acquisition and shipper relationships',
-      'Understanding freight pricing and margins',
-      'Small logistics company operations',
-    ],
-    cta: 'Book 60-Minute Session',
-    featured: true,
-  },
-]
 
 const topics = [
   'How to start a freight brokerage from scratch',
@@ -169,8 +132,8 @@ export default function ConsultingPage() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-4xl">
-            {sessions.map((session) => (
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-4xl mb-16">
+            {CONSULTATION_PLANS.map((session) => (
               <div
                 key={session.title}
                 className={`relative flex flex-col rounded-sm border p-10 ${
@@ -277,19 +240,34 @@ export default function ConsultingPage() {
                       : 'bg-primary hover:bg-red-hover text-primary-foreground'
                   }`}
                 >
-                  <Link href="/contact">
-                    {session.cta} <ArrowRight size={16} />
-                  </Link>
+                  <a href="#booking-form">
+                    Book {session.duration}-Minute Call ({session.price}) <ArrowRight size={16} />
+                  </a>
                 </Button>
               </div>
             ))}
           </div>
 
-          <p className="mt-8 text-sm text-muted-foreground max-w-2xl">
-            Sessions are conducted via phone or video call. After booking, you will
-            receive confirmation and a short intake question to help Nic prepare for
-            your specific situation.
-          </p>
+          {/* Direct Booking Form Section */}
+          <div className="max-w-4xl">
+            <ConsultationBookingForm />
+          </div>
+
+          <div className="mt-12 flex flex-col sm:flex-row items-start sm:items-center gap-6 p-6 bg-surface border border-border rounded-sm max-w-4xl">
+            <div className="w-12 h-12 rounded-sm bg-primary/10 border border-primary/30 flex items-center justify-center flex-shrink-0 text-primary">
+              <ShieldCheck size={24} />
+            </div>
+            <div className="flex-1">
+              <h4 className="text-sm font-bold text-foreground mb-1">
+                How Consultation Scheduling &amp; Payment Works
+              </h4>
+              <p className="text-xs text-muted-foreground leading-relaxed">
+                1. Complete the intake form with your topic and availability. <br />
+                2. You will be redirected to the secure PayPal invoice to complete payment, and receive an instant confirmation email. <br />
+                3. Nic Spears will review your intake notes and confirm your dial-in link directly.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 

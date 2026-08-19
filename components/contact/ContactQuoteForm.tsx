@@ -55,71 +55,37 @@ export function ContactQuoteForm({ variant = 'contact' }: ContactQuoteFormProps)
     setErrorMessage('')
 
     try {
-      // Configuration for frontend form endpoints
-      const web3FormsKey =
-        process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY ||
-        // Fallback default access key if set
-        ''
-      const formspreeId = process.env.NEXT_PUBLIC_FORMSPREE_ID || ''
-
       const payload = {
-        access_key: web3FormsKey,
-        subject: `NBS Freight Quote Request from ${formData.name || 'Website Visitor'}`,
-        from_name: 'NBS Freight Quote Form',
-        to_email: 'nspears@nbsfreightllc.com',
-        source_page: variant === 'services' ? 'Services Page' : 'Contact Page',
         name: formData.name,
         company: formData.company || 'N/A',
         email: formData.email,
         phone: formData.phone,
         origin: formData.origin,
         destination: formData.destination,
-        equipment_type: formData.equipment || 'Not specified',
-        shipping_frequency: formData.frequency || 'Not specified',
-        freight_type: formData.freightType || 'Not specified',
-        estimated_pickup_date: formData.pickupDate || 'Not specified',
+        equipment: formData.equipment || 'Not specified',
+        frequency: formData.frequency || 'Not specified',
+        freightType: formData.freightType || 'Not specified',
+        pickupDate: formData.pickupDate || 'Not specified',
         message: formData.message || 'No additional notes provided',
+        sourcePage: variant === 'services' ? 'Services Page' : 'Contact Page',
       }
 
-      let isSuccess = false
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      })
 
-      if (formspreeId) {
-        // Direct client-side submission to Formspree
-        const res = await fetch(`https://formspree.io/f/${formspreeId}`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-          },
-          body: JSON.stringify(payload),
-        })
-        if (res.ok) isSuccess = true
-      } else if (web3FormsKey) {
-        // Direct client-side submission to Web3Forms
-        const res = await fetch('https://api.web3forms.com/submit', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-          },
-          body: JSON.stringify(payload),
-        })
-        const data = await res.json()
-        if (data.success) isSuccess = true
-      } else {
-        // Frontend simulated handling when no public key is yet configured
-        // Enables local testing, logs payload, and provides instant confirmation
-        await new Promise((resolve) => setTimeout(resolve, 800))
-        console.log('[NBS Freight Form Submission]:', payload)
-        isSuccess = true
+      const data = await res.json()
+
+      if (!res.ok) {
+        throw new Error(data.error || 'Could not submit form. Please try emailing directly or call us.')
       }
 
-      if (isSuccess) {
-        setStatus('success')
-        toast.success('Quote request submitted! Nic will be in touch shortly.')
-      } else {
-        throw new Error('Could not submit form. Please try emailing directly or call us.')
-      }
+      setStatus('success')
+      toast.success('Quote request submitted! Nic will be in touch shortly.')
     } catch (err: unknown) {
       console.error('Form submission error:', err)
       setStatus('error')
