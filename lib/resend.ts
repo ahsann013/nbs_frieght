@@ -1,11 +1,20 @@
 import { Resend } from 'resend'
 
-const resendApiKey = process.env.RESEND_API_KEY || ''
-export const resend = resendApiKey ? new Resend(resendApiKey) : null
+export function getResend() {
+  const apiKey = process.env.RESEND_API_KEY
+  if (!apiKey || apiKey.trim() === '') {
+    return null
+  }
+  return new Resend(apiKey.trim())
+}
 
-export const SENDER_EMAIL =
-  process.env.RESEND_FROM_EMAIL || 'NBS Freight <onboarding@resend.dev>'
-export const NIC_EMAIL = process.env.NOTIFICATION_EMAIL || 'nspears@nbsfreightllc.com'
+export function getSenderEmail() {
+  return process.env.RESEND_FROM_EMAIL || 'NBS Freight <onboarding@resend.dev>'
+}
+
+export function getNotificationEmail() {
+  return process.env.NOTIFICATION_EMAIL || 'ahsan.yousaf.dev@gmail.com'
+}
 
 export interface ConsultationBookingData {
   name: string
